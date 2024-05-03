@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './Styles/reset.css';
 import './Styles/index.css';
-import App from './Pages/App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import App from './Pages/App';
+import Grid from './Pages/Grid';
 import NotFound from "./Pages/NotFound"
 
 
@@ -16,9 +18,10 @@ root.render(
       <Routes>
 
         <Route path="/" Component={() => <App />}></Route>
+        <Route path="/grid/*" Component={() => <Grid />}></Route>
         <Route path="/*" Component={() => <NotFound />}></Route>
       </Routes>
     </BrowserRouter>
 
-  </React.StrictMode>
+  </React.StrictMode >
 );
