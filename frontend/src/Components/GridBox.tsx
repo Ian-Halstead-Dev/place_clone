@@ -16,7 +16,7 @@ const GridBox: React.FC<props> = ({ rgb, row, column, currColor, setCurrColors, 
 
   // Create an inline style with the RGB values
   const style = {
-    backgroundColor: `${rgb}`
+    backgroundColor: `#${rgb}`
   };
 
   return (

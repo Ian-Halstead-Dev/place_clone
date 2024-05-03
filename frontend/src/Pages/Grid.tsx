@@ -18,10 +18,10 @@ const Grid: React.FC = () => {
 
   const [currColor, setCurrColor] = useState<string>("FFFFFF");
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-  const [currColors, setCurrColors] = useState<string[][]>([['#7F78D2', '#CA15F6', '#5C8B29', '#3FCE45', '#D1B72D'], ['#A24D44', '#F4954C', '#6ED26A', '#9A23F3', '#3E8F99'], ['#A24D44', '#F4954C', '#6ED26A', '#9A23F3', '#3E8F99'], ['#A24D44', '#F4954C', '#6ED26A', '#9A23F3', '#3E8F99'], ['#A24D44', '#F4954C', '#6ED26A', '#9A23F3', '#3E8F99']])
+  const [currColors, setCurrColors] = useState<string[][]>([['7F78D2', 'CA15F6', '5C8B29', '3FCE45', 'D1B72D'], ['A24D44', 'F4954C', '6ED26A', '9A23F3', '3E8F99'], ['A24D44', 'F4954C', '6ED26A', '9A23F3', '3E8F99'], ['A24D44', 'F4954C', '6ED26A', '9A23F3', '3E8F99'], ['A24D44', 'F4954C', '6ED26A', '9A23F3', '3E8F99']])
 
   useEffect(() => {
-    setCurrColor("#ffffff");
+    setCurrColor("ffffff");
     const handleMouseDown = () => setIsMouseDown(true);
     const handleMouseUp = () => setIsMouseDown(false);
 
@@ -41,13 +41,13 @@ const Grid: React.FC = () => {
       <Row numColumns={30} row={4} colors={currColors[4]} currColor={currColor} setCurrColors={setCurrColors} currColors={currColors} onGridBoxClick={setColor} isMouseDown={isMouseDown} />
       <ChromePicker
         color={currColor}
-        onChange={(color: ColorResult) => { setCurrColor(color.hex) }}
+        onChange={(color: ColorResult) => { setCurrColor(color.hex.slice(1)) }}
       />
 
 
       <CirclePicker
         color={currColor}
-        onChange={(color: ColorResult) => { setCurrColor(color.hex) }}></CirclePicker>
+        onChange={(color: ColorResult) => { setCurrColor(color.hex.slice(1)) }}></CirclePicker>
     </div>
   );
 };
