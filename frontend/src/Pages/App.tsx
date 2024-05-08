@@ -15,7 +15,9 @@ let loadNext = async (navigate: ReturnType<typeof useNavigate>, count: number) =
     }
 
 
-    let data = await axios.post("http://localhost:8080/image", { name: str, numRows: 10, numColumns: 10 });
+    let data = await axios.post("http://localhost:8080/image", { name: str, numRows: 20, numColumns: 10 });
+
+    await setTimeout(() => { }, 1000);
 
   }
   catch (e) {

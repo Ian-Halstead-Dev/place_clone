@@ -47,6 +47,7 @@ const Grid: React.FC = () => {
   const [currColors, setCurrColors] = useState<string[][]>([])
   const [row, setRow] = useState<number>(0);
   const [col, setCol] = useState<number>(0);
+  const [pageLoaded, setPageLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     const handleMouseDown = () => setIsMouseDown(true);
@@ -62,6 +63,7 @@ const Grid: React.FC = () => {
         setRow(arr.length);
         setCol(arr[0].length);
         setCurrColors(arr);
+        setPageLoaded(true);
       }
       catch (e) {
         console.log(e);
@@ -77,23 +79,22 @@ const Grid: React.FC = () => {
 
 
   return (
-    <div>
-      <p>{wildcardParam}</p>
-      <div className="grid">
-
-        {generateGrid(row, col, setCurrColors, currColors, isMouseDown, currColor, wildcardParam!)}
+    pageLoaded ? (
+      <div>
+        <p>{wildcardParam}</p>
+        <div className="grid">
+          {generateGrid(row, col, setCurrColors, currColors, isMouseDown, currColor, wildcardParam!)}
+        </div>
+        <ChromePicker
+          color={currColor}
+          onChange={(color: ColorResult) => { setCurrColor(color.hex.slice(1)) }}
+        />
+        <CirclePicker
+          color={currColor}
+          onChange={(color: ColorResult) => { setCurrColor(color.hex.slice(1)) }}
+        />
       </div>
-
-      <ChromePicker
-        color={currColor}
-        onChange={(color: ColorResult) => { setCurrColor(color.hex.slice(1)) }}
-      />
-
-
-      <CirclePicker
-        color={currColor}
-        onChange={(color: ColorResult) => { setCurrColor(color.hex.slice(1)) }}></CirclePicker>
-    </div>
+    ) : <div></div>
   );
 };
 

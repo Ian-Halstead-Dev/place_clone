@@ -34,7 +34,7 @@ public class ImageService extends AbstractService<Image, String, ImageRepo> {
         List<GridCell> grid = image.getGrid();
         for(int i = 0; i < (int) data.get("numRows"); i++) {
             for (int j = 0; j < (int) data.get("numColumns"); j++) {
-                GridCell g = new GridCell("FFFFFF", j, i);
+                GridCell g = new GridCell("FFFFFF", i, j);
                grid.add(g);
                 g.setGrid(image);
                 gridService.save(g);
