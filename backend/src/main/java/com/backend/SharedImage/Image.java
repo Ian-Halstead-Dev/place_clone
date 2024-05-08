@@ -3,6 +3,7 @@ package com.backend.SharedImage;
 
 
 import com.backend.GridCell.GridCell;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class Image {
     private int numColumns;
 
     @OneToMany()
+    @JsonIgnore
     private List<GridCell> grid;
 
     public Image() {

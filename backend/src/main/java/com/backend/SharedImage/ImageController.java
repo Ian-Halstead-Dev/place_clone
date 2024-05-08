@@ -22,8 +22,8 @@ public class ImageController {
     @Autowired
     ImageService service;
 
-
-
+    @Autowired
+    GridService gridService;
 
     @PostMapping("")
     private ResponseEntity<ResponseType<Image>> createImage(@RequestBody HashMap<String, Object> body) {
@@ -35,7 +35,7 @@ public class ImageController {
         }
 
 
-        service.save(image);
+
         return ResponseType.success(image);
     }
 
@@ -52,6 +52,28 @@ public class ImageController {
         }
 
         return ResponseType.success(imageO.get());
+    }
+
+    @GetMapping("/gridAsArray/{id}")
+    private ResponseEntity<ResponseType<String[][]>> getStatusAsArray(@PathVariable String id) {
+        try {
+            return ResponseType.success(service.gridToArray(id));
+        } catch (ResponseStatusException e) {
+            return ResponseType.error(e);
+        }
+    }
+
+
+
+    @PutMapping("/changeOneCell/{id}")
+    private ResponseEntity<ResponseType<String>> changeCell(@PathVariable String id, @RequestBody HashMap<String, Object> hash) {
+
+        try {
+            service.changeOneCell(id, hash.get("color").toString(), Integer.parseInt(hash.get("row").toString()),  Integer.parseInt(hash.get("column").toString()) );
+        } catch(ResponseStatusException e) {
+            return ResponseType.error(e);
+        }
+        return ResponseType.success();
     }
 
 }

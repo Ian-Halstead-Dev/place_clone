@@ -14,4 +14,8 @@ public class GridService extends AbstractService<GridCell, Integer, GridRepo> {
     public GridService(GridRepo repository) {
         super(repository);
     }
+
+    public GridCell findByRowColumnAndGrid(int row, int column, Image grid) {
+        return repo.findByRowPositionAndColumnPositionAndGrid(row, column, grid);
+    }
 }

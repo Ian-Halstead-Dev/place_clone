@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GridRepo extends JpaRepository<GridCell, Integer> {
 
+    GridCell findByRowPositionAndColumnPositionAndGrid(int rowPosition, int columnPosition, Image grid);
+
 }
